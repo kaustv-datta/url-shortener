@@ -17,7 +17,12 @@ export class Submit extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form id="submit-form" onSubmit={handleSubmit}>
+      <form
+        id="submit-form"
+        onSubmit={event => {
+          handleSubmit(event, this.state.value);
+        }}
+      >
         <input
           id="url-input"
           type="url"
