@@ -5,6 +5,7 @@ export const types = {
 
 export const initialState = {
   urlList: [],
+  urlInputValue: "",
   isLoading: true,
   isError: false
 };
