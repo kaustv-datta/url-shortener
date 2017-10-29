@@ -33,3 +33,7 @@ export const getAllShortcodesCache = () => {
 
   return shortcodes;
 };
+
+export const clearCache = () => {
+  localStorage.removeItem(CACHE_KEY);
+};

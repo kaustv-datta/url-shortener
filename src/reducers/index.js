@@ -1,11 +1,13 @@
 import { createUrlItem } from "./helper";
+import { clearCache } from "../services/localStorageApi";
 
 export const types = {
   LOAD_HISTORY: "APP/LOAD_HISTORY",
   SHORTEN_URL: "APP/SHORTEN_URL",
   SHORTEN_SUCCESS: "APP/SHORTEN_SUCCESS",
   SHORTEN_FAIL: "APP/SHORTEN_FAIL",
-  URL_STATS_UPDATE: "WS/URL_STATS_UPDATE"
+  URL_STATS_UPDATE: "WS/URL_STATS_UPDATE",
+  CLEAR_HISTORY: "APP/CLEAR_HISTORY"
 };
 
 export const initialState = {
@@ -28,6 +30,10 @@ export default (state = initialState, action) => {
         })
       };
 
+    case types.CLEAR_HISTORY:
+      clearCache();
+      return { ...state, urlList: {} };
+
     default:
       return state;
   }
@@ -38,5 +44,6 @@ export const actions = {
   shortenUrl: url => ({
     type: types.SHORTEN_URL,
     payload: { url }
-  })
+  }),
+  clearHistory: () => ({ type: types.CLEAR_HISTORY })
 };

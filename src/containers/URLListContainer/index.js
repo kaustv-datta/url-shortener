@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import URLList from "../../components/URLList";
 import { relativeTime } from "../../modules/utilities";
+import { actions } from "../../reducers";
 
 const mapStateToProps = state => ({
   list: Object.keys(state.urlList).map(shortcode => {
@@ -20,6 +21,10 @@ const mapStateToProps = state => ({
   })
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onClearClick: () => {
+    dispatch(actions.clearHistory());
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(URLList);
