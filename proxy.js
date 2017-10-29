@@ -32,6 +32,15 @@ app.post("/shorten", cors(), (req, res, next) => {
     );
 });
 
-app.listen(TARGET_PORT, () => {
+const server = app.listen(TARGET_PORT, () => {
   console.log("CORS-enabled web server listening on port " + TARGET_PORT);
+});
+
+const io = require("socket.io").listen(server);
+
+io.on("connection", function(socket) {
+  socket.emit("news", { hello: "world" });
+  socket.on("my other event", function(data) {
+    console.log(data);
+  });
 });
