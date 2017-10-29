@@ -3,6 +3,7 @@ import { eventChannel, delay } from "redux-saga";
 import io from "socket.io-client";
 import { PROXY_URL } from "../configs";
 import { types } from "../reducers";
+import { getAllShortcodesCache } from "../services/localStorageApi";
 
 export let WEB_SOCKET = null;
 
@@ -11,7 +12,7 @@ const createWebSocketConnection = () => {
   return WEB_SOCKET;
 };
 
-function createSocketChannel(socket) {
+const createSocketChannel = socket => {
   return eventChannel(emit => {
     const pingHandler = event => {
       if (event.payload) emit(event.payload);
@@ -25,7 +26,7 @@ function createSocketChannel(socket) {
 
     return unsubscribe;
   });
-}
+};
 
 export function* pongShortcodes(shortcodes) {
   if (shortcodes && shortcodes.length > 0) {
@@ -36,6 +37,17 @@ export function* pongShortcodes(shortcodes) {
   }
 }
 
+export function* watchPollData() {
+  try {
+    while (true) {
+      yield call(delay, 10000);
+      yield call(pongShortcodes, getAllShortcodesCache());
+    }
+  } catch (error) {
+    return;
+  }
+}
+
 export default function* websocketSagas() {
   const socket = yield call(createWebSocketConnection);
   const socketChannel = yield call(createSocketChannel, socket);
@@ -43,6 +55,5 @@ export default function* websocketSagas() {
   while (true) {
     const payload = yield take(socketChannel);
     yield put({ type: types.URL_STATS_UPDATE, payload });
-    // yield fork(pongShortcodes);
   }
 }
