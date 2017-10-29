@@ -3,11 +3,14 @@ const cors = require("cors");
 const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
 
+const API_URL = "https://impraise-shorty.herokuapp.com/";
+const TARGET_PORT = 80;
+
 const app = express();
-app.use(bodyParser.json()); // to support JSON-encoded bodies
+
+app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    // to support URL-encoded bodies
     extended: true
   })
 );
@@ -15,14 +18,20 @@ app.use(cors());
 app.options("*", cors());
 
 app.post("/shorten", cors(), (req, res, next) => {
-  fetch("https://impraise-shorty.herokuapp.com/shorten", {
+  fetch(API_URL + "shorten", {
     method: "post",
     body: JSON.stringify({
       url: req.body.url
     })
-  }).then(data => res.send(data));
+  })
+    .then(res => res.json())
+    .then(json =>
+      res.send(
+        Object.assign({}, json, { api: API_URL, long_url: req.body.url })
+      )
+    );
 });
 
-app.listen(80, () => {
-  console.log("CORS-enabled web server listening on port 80");
+app.listen(TARGET_PORT, () => {
+  console.log("CORS-enabled web server listening on port " + TARGET_PORT);
 });

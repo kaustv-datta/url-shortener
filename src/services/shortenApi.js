@@ -10,5 +10,5 @@ export const fetchShortcode = url => {
     body: JSON.stringify({
       url
     })
-  });
+  }).then(resp => resp.json());
 };
