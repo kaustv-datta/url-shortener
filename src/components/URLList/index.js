@@ -1,4 +1,5 @@
 import React from "react";
+import { copyToClipboard } from "../../modules/utilities";
 
 const URLList = ({ list = [], onClearClick }) => {
   return (
@@ -18,7 +19,10 @@ const URLList = ({ list = [], onClearClick }) => {
         <tbody>
           {list.map(url => {
             return (
-              <tr key={url.shortcode}>
+              <tr
+                key={url.shortcode}
+                onClick={() => copyToClipboard(url.shortDomain + url.shortcode)}
+              >
                 <td>
                   <p>
                     {url.shortDomain}
