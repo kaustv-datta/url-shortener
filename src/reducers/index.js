@@ -22,6 +22,18 @@ export default (state = initialState, action) => {
     case types.LOAD_HISTORY:
       return { ...state, urlList: {} };
 
+    case types.SHORTEN_SUCCESS:
+      return {
+        ...state,
+        urlList: Object.assign({}, state.urlList, {
+          [action.data.shortcode]: {
+            shortDomain: action.data.api,
+            longUrl: action.data.long_url,
+            visits: 0
+          }
+        })
+      };
+
     case types.URL_STATS_UPDATE:
       return {
         ...state,
