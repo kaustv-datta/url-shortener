@@ -39,8 +39,29 @@ const server = app.listen(TARGET_PORT, () => {
 const io = require("socket.io").listen(server);
 
 io.on("connection", function(socket) {
-  socket.emit("news", { hello: "world" });
-  socket.on("my other event", function(data) {
-    console.log(data);
+  socket.on("url_stats", data => {
+    pingShortcodeStats(data.payload, socket);
   });
 });
+
+const pingShortcodeStats = (shortcodes, socket) => {
+  shortcodes.forEach(function(code) {
+    setTimeout(() => {
+      fetch(API_URL + code + "/stats", {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(res => res.json())
+        .then(json => {
+          socket.emit("url_stats_updadte", {
+            payload: {
+              shortcode: code,
+              visits: json.redirectCount,
+              lastVisit: json.lastSeenDate
+            }
+          });
+        });
+    }, 300);
+  });
+};

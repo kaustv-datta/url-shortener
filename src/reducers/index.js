@@ -1,12 +1,15 @@
+import { createUrlItem } from "./helper";
+
 export const types = {
   LOAD_HISTORY: "APP/LOAD_HISTORY",
   SHORTEN_URL: "APP/SHORTEN_URL",
   SHORTEN_SUCCESS: "APP/SHORTEN_SUCCESS",
-  SHORTEN_FAIL: "APP/SHORTEN_FAIL"
+  SHORTEN_FAIL: "APP/SHORTEN_FAIL",
+  URL_STATS_UPDATE: "WS/URL_STATS_UPDATE"
 };
 
 export const initialState = {
-  urlList: [],
+  urlList: {},
   urlInputValue: "",
   isLoading: true,
   isError: false
@@ -15,7 +18,15 @@ export const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.LOAD_HISTORY:
-      return { ...state, urlList: [] };
+      return { ...state, urlList: {} };
+
+    case types.URL_STATS_UPDATE:
+      return {
+        ...state,
+        urlList: Object.assign({}, state.urlList, {
+          [action.payload.shortcode]: createUrlItem(action.payload)
+        })
+      };
 
     default:
       return state;

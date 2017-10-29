@@ -1,10 +1,12 @@
 import React from "react";
 
-const URLList = ({ list = [] }) => {
+const URLList = ({ list = [], onClearClick }) => {
   return (
     <div id="url-list-container">
       <h3 id="url-list-header">Previously shortened by you</h3>
-      <button type="button">Clear history</button>
+      <button type="button" onClick={onClearClick}>
+        Clear history
+      </button>
       <table id="url-list">
         <thead>
           <tr>
@@ -16,10 +18,16 @@ const URLList = ({ list = [] }) => {
         <tbody>
           {list.map(url => {
             return (
-              <tr>
-                <td>{url.shortened}</td>
-                <td>{url.redirectCount}</td>
-                <td>{url.lastSeenDate}</td>
+              <tr key={url.shortcode}>
+                <td>
+                  <p>
+                    {url.shortDomain}
+                    <span>{url.shortcode}</span>
+                  </p>
+                  <span>{url.longUrl}</span>
+                </td>
+                <td>{url.visits}</td>
+                <td>{url.lastVisit}</td>
               </tr>
             );
           })}

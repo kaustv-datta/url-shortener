@@ -1,9 +1,7 @@
-// const API_URL = "https://impraise-shorty.herokuapp.com/";
-const API_URL = "http://localhost:80";
-const io = require("socket.io-client");
+import { PROXY_URL } from "../configs";
 
 export const fetchShortcode = url => {
-  return fetch(API_URL + "/shorten", {
+  return fetch(PROXY_URL + "/shorten", {
     headers: {
       "Content-Type": "application/json"
     },
@@ -13,9 +11,3 @@ export const fetchShortcode = url => {
     })
   }).then(resp => resp.json());
 };
-
-const socket = io.connect("http://localhost");
-socket.on("news", function(data) {
-  console.log(data);
-  socket.emit("my other event", { my: "data" });
-});
