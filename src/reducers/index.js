@@ -7,16 +7,25 @@ export const types = {
   SHORTEN_SUCCESS: "APP/SHORTEN_SUCCESS",
   SHORTEN_FAIL: "APP/SHORTEN_FAIL",
   URL_STATS_UPDATE: "WS/URL_STATS_UPDATE",
-  CLEAR_HISTORY: "APP/CLEAR_HISTORY"
+  CLEAR_HISTORY: "APP/CLEAR_HISTORY",
+  SET_DEFAULT_APP_STATE: "APP/DEFAULT_STATE",
+  SET_LOADING_STATE: "APP/LOADING_STATE",
+  SET_ERROR_STATE: "APP/ERROR_STATE",
+  SET_EMPTY_STATE: "APP/EMPTY_STATE",
+  CHANGE_APP_STATE: "APP/CHANGE_STATE"
+};
+
+export const APP_STATUS = {
+  DEFAULT: "STATUS/APP_DEFAULT",
+  EMPTY: "STATUS/APP_EMPTY",
+  ERROR: "STATUS/APP_ERROR",
+  LOADING: "STATUS/APP_LOADING"
 };
 
 export const initialState = {
   urlList: {},
-  urlInputValue: "",
-  isLoadingApi: false,
-  isLoadingCache: false,
-  isError: false,
-  currentShortCode: ""
+  currentShortCode: "",
+  appStatus: APP_STATUS.EMPTY
 };
 
 export default (state = initialState, action) => {
@@ -50,6 +59,9 @@ export default (state = initialState, action) => {
       clearCache();
       return { ...state, urlList: {} };
 
+    case types.CHANGE_APP_STATE:
+      return { ...state, appStatus: action.data };
+
     default:
       return state;
   }
@@ -61,5 +73,21 @@ export const actions = {
     type: types.SHORTEN_URL,
     payload: { url }
   }),
-  clearHistory: () => ({ type: types.CLEAR_HISTORY })
+  clearHistory: () => ({ type: types.CLEAR_HISTORY }),
+  setDefaultState: () => ({
+    type: types.CHANGE_APP_STATE,
+    data: APP_STATUS.DEFAULT
+  }),
+  setLoadingState: () => ({
+    type: types.CHANGE_APP_STATE,
+    data: APP_STATUS.LOADING
+  }),
+  setErrorState: () => ({
+    type: types.CHANGE_APP_STATE,
+    data: APP_STATUS.ERROR
+  }),
+  setEmptyState: () => ({
+    type: types.CHANGE_APP_STATE,
+    data: APP_STATUS.EMPTY
+  })
 };

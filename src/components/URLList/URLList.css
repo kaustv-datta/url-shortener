@@ -57,3 +57,22 @@
 #url-list tbody tr:hover .click-hint {
   visibility: visible;
 }
+
+.app-status-icon {
+  width: 100%;
+  height: 200px;
+}
+
+#app-empty-status {
+  background: url(../../styles/images/ball.gif) center / 200px 200px no-repeat;
+}
+
+#app-loading-status {
+  background: url(../../styles/images/loading.gif) center / 200px 200px
+    no-repeat;
+}
+
+#app-error-status {
+  background: url(../../styles/images/warning.png) center / 200px 200px
+    no-repeat;
+}

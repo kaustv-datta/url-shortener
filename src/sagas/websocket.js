@@ -2,7 +2,7 @@ import { take, put, call, apply, fork } from "redux-saga/effects";
 import { eventChannel, delay } from "redux-saga";
 import io from "socket.io-client";
 import { PROXY_URL } from "../configs";
-import { types } from "../reducers";
+import { types, actions } from "../reducers";
 import { getAllShortcodesCache } from "../services/localStorageApi";
 
 export let WEB_SOCKET = null;
@@ -34,6 +34,8 @@ export function* pongShortcodes(shortcodes) {
       "url_stats",
       { payload: shortcodes }
     ]);
+  } else {
+    yield put(actions.setEmptyState());
   }
 }
 
@@ -55,5 +57,6 @@ export default function* websocketSagas() {
   while (true) {
     const payload = yield take(socketChannel);
     yield put({ type: types.URL_STATS_UPDATE, payload });
+    yield put(actions.setDefaultState());
   }
 }

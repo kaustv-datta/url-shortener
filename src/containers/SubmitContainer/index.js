@@ -12,6 +12,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     if (event.target.checkValidity()) {
       event.preventDefault();
       dispatch(actions.shortenUrl(url));
+      dispatch(actions.setLoadingState());
     }
   }
 });

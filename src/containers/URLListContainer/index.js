@@ -23,12 +23,14 @@ const mapStateToProps = state => ({
     .sort((a, b) => {
       return b.startDate - a.startDate;
     }),
-  activeShortcode: state.currentShortCode
+  activeShortcode: state.currentShortCode,
+  appState: state.appStatus
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClearClick: () => {
     dispatch(actions.clearHistory());
+    dispatch(actions.setEmptyState());
   }
 });
 
