@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("./fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("./fonts/Roboto/Roboto-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+:root {
+  --primary-text-color: #555555;
+  --secondary-text-color: #aaaaaa;
+  --unimportant-text-color: #cccccc;
+  --disabled-button-text-color: #bfbfbf;
+  --enabled-button-text-color: #ffffff;
+  --light-background-color: #eaeaea;
+  --disabled-button-background-color: #e0e0e0;
+  --accent-color: #eb4a42;
+
+  --default-border-radius: 3px;
+}
+
+.round-border {
+  border-radius: var(--default-border-radius);
+}
+
+.logo {
+  font-family: "Montserrat-Regular";
+  font-size: 47px;
+  color: var(--accent-color);
+}
+
+.section-heading {
+  font-family: "Roboto-Light";
+  font-size: 22px;
+  color: var(--primary-text-color);
+}
+
+.normal-text {
+  font-family: "Roboto-Light";
+  font-size: 16px;
+  color: var(--primary-text-color);
+}
+
+.url-body {
+  font-family: "Roboto-Regular";
+  font-size: 16px;
+  color: var(--primary-text-color);
+}
+
+.table-headings {
+  font-family: "Roboto-Regular";
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--secondary-text-color);
+}
+
+*:focus {
+  outline: none;
+}
+
+.link:enabled {
+  cursor: pointer;
+}

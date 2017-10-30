@@ -58,7 +58,8 @@ const pingShortcodeStats = (shortcodes, socket) => {
             payload: {
               shortcode: code,
               visits: json.redirectCount,
-              lastVisit: json.lastSeenDate
+              lastVisit: json.lastSeenDate,
+              startDate: json.startDate
             }
           });
         });

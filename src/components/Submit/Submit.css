@@ -1,0 +1,31 @@
+#url-input {
+  background-color: var(--light-background-color);
+  border: none;
+  height: 42px;
+  width: 422px;
+  padding: 0 18px;
+}
+
+#url-input::placeholder {
+  color: var(--disabled-button-text-color);
+}
+
+#url-submit-btn {
+  background-color: var(--accent-color);
+  color: var(--enabled-button-text-color);
+  border: none;
+  height: 42px;
+  width: 148px;
+  padding: 0 18px;
+}
+
+#url-submit-btn:disabled {
+  background-color: var(--disabled-button-background-color);
+  color: var(--disabled-button-text-color);
+}
+
+#submit-form {
+  margin-bottom: 54px;
+  display: flex;
+  justify-content: space-between;
+}

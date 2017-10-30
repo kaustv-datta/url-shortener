@@ -1,15 +1,24 @@
 import React from "react";
 import { copyToClipboard } from "../../modules/utilities";
 
-const URLList = ({ list = [], onClearClick }) => {
+import "./URLList.css";
+
+const URLList = ({ list = [], onClearClick, activeShortcode }) => {
   return (
     <div id="url-list-container">
-      <h3 id="url-list-header">Previously shortened by you</h3>
-      <button type="button" onClick={onClearClick}>
+      <h3 id="url-list-header" className="section-heading">
+        Previously shortened by you
+      </h3>
+      <button
+        id="clear-history-btn"
+        className="normal-text link"
+        type="button"
+        onClick={onClearClick}
+      >
         Clear history
       </button>
       <table id="url-list">
-        <thead>
+        <thead className="table-headings">
           <tr>
             <th>LINK</th>
             <th>VISITS</th>
@@ -23,15 +32,26 @@ const URLList = ({ list = [], onClearClick }) => {
                 key={url.shortcode}
                 onClick={() => copyToClipboard(url.shortDomain + url.shortcode)}
               >
-                <td>
-                  <p>
+                <td
+                  className={
+                    activeShortcode === url.shortcode ? "new-link" : ""
+                  }
+                >
+                  <span className="normal-text click-hint">
+                    Click to copy this link
+                  </span>
+                  <br />
+                  <span className="url-body">
                     {url.shortDomain}
-                    <span>{url.shortcode}</span>
-                  </p>
-                  <span>{url.longUrl}</span>
+                    <span className="url-shortcode">{url.shortcode}</span>
+                  </span>
+                  <br />
+                  <span className="url-longcode normal-text">
+                    {url.longUrl}
+                  </span>
                 </td>
-                <td>{url.visits}</td>
-                <td>{url.lastVisit}</td>
+                <td className="normal-text">{url.visits}</td>
+                <td className="normal-text">{url.lastVisit}</td>
               </tr>
             );
           })}

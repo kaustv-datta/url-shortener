@@ -7,6 +7,9 @@ export const createUrlItem = url => {
     shortDomain: shortcodeCache.shortUrlDomain,
     longUrl: shortcodeCache.longUrl,
     visits: url.visits,
-    lastVisit: url.lastVisit
+    lastVisit: url.lastVisit,
+    startDate: url.startDate
+      ? new Date(url.startDate).getTime()
+      : new Date().getTime()
   };
 };

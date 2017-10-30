@@ -7,18 +7,23 @@ import { relativeTime } from "../../modules/utilities";
 import { actions } from "../../reducers";
 
 const mapStateToProps = state => ({
-  list: Object.keys(state.urlList).map(shortcode => {
-    let urlItem = Object.assign({}, state.urlList[shortcode]);
-    urlItem.shortcode = shortcode;
+  list: Object.keys(state.urlList)
+    .map(shortcode => {
+      let urlItem = Object.assign({}, state.urlList[shortcode]);
+      urlItem.shortcode = shortcode;
 
-    if (urlItem.lastVisit === undefined) {
-      urlItem.lastVisit = "NA";
-    } else {
-      urlItem.lastVisit = relativeTime(urlItem.lastVisit);
-    }
+      if (urlItem.lastVisit === undefined) {
+        urlItem.lastVisit = "NA";
+      } else {
+        urlItem.lastVisit = relativeTime(urlItem.lastVisit);
+      }
 
-    return urlItem;
-  })
+      return urlItem;
+    })
+    .sort((a, b) => {
+      return b.startDate - a.startDate;
+    }),
+  activeShortcode: state.currentShortCode
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

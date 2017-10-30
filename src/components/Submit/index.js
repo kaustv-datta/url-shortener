@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import "./Submit.css";
+
 export class Submit extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +27,7 @@ export class Submit extends Component {
       >
         <input
           id="url-input"
+          className="normal-text round-border"
           type="url"
           placeholder="Paste the link you want to shorten here"
           value={this.state.value}
@@ -32,6 +35,8 @@ export class Submit extends Component {
           required
         />
         <input
+          id="url-submit-btn"
+          className="normal-text round-border link"
           type="submit"
           value="Shorten this link"
           disabled={this.state.value === ""}

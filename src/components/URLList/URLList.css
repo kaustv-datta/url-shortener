@@ -1,0 +1,59 @@
+#clear-history-btn {
+  border: none;
+  background-color: var(--enabled-button-text-color);
+  color: var(--accent-color);
+}
+
+#url-list .url-shortcode {
+  color: var(--accent-color);
+}
+
+#url-list .url-longcode {
+  color: var(--unimportant-text-color);
+}
+
+#url-list-header {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+#url-list {
+  text-align: left;
+}
+
+#url-list tbody tr {
+  cursor: pointer;
+}
+
+#url-list tbody tr td.new-link {
+  border-left: 4px solid var(--accent-color);
+}
+
+#url-list tr > td:nth-child(1),
+#url-list tr > td:nth-child(1) {
+  max-width: 400px;
+  padding-right: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 20px 50px 0 8px;
+}
+
+#url-list tr > td:nth-child(2),
+#url-list tr > td:nth-child(2) {
+  width: 60px;
+}
+
+#url-list tr > td:nth-child(3),
+#url-list tr > td:nth-child(3) {
+  width: 92px;
+}
+
+#url-list .click-hint {
+  color: var(--accent-color);
+  visibility: hidden;
+}
+
+#url-list tbody tr:hover .click-hint {
+  visibility: visible;
+}

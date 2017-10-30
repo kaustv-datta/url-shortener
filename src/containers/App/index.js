@@ -6,6 +6,9 @@ import Header from "../../components/Header";
 import SubmitContainer from "../SubmitContainer";
 import URLListContainer from "../URLListContainer";
 
+//642
+import "./App.css";
+
 const App = () => {
   return (
     <section id="app-container">

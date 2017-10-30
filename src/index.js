@@ -9,6 +9,8 @@ import urlShortener, { initialState } from "./reducers";
 import sagas from "./sagas";
 import registerServiceWorker from "./registerServiceWorker";
 
+import "./styles/index.css";
+
 const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

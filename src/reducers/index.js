@@ -13,8 +13,10 @@ export const types = {
 export const initialState = {
   urlList: {},
   urlInputValue: "",
-  isLoading: true,
-  isError: false
+  isLoadingApi: false,
+  isLoadingCache: false,
+  isError: false,
+  currentShortCode: ""
 };
 
 export default (state = initialState, action) => {
@@ -29,9 +31,11 @@ export default (state = initialState, action) => {
           [action.data.shortcode]: {
             shortDomain: action.data.api,
             longUrl: action.data.long_url,
-            visits: 0
+            visits: 0,
+            startDate: new Date().getTime()
           }
-        })
+        }),
+        currentShortCode: action.data.shortcode
       };
 
     case types.URL_STATS_UPDATE:
