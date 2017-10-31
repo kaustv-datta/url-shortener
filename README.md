@@ -54,6 +54,12 @@
 
  * [create-react-app](https://github.com/facebookincubator/create-react-app) for bootstrapping application.
 
+ * [socket.io](https://socket.io/) websockets
+
+ * [redux](http://redux.js.org/) state management
+
+ * [redux-saga](https://redux-saga.js.org/) redux side effects management
+
 ### Todos:
 
 * Merge config files into one.
