@@ -40,9 +40,19 @@
  npm run build
  ```
 
+### Running application screenshots
+
+![default state](https://user-images.githubusercontent.com/6747425/32241311-ceb27c9c-be95-11e7-8223-0303091d642a.png)
+
+![loading state](https://user-images.githubusercontent.com/6747425/32241404-071da660-be96-11e7-8672-f5843c79fe78.png)
+
+![populated state](https://user-images.githubusercontent.com/6747425/32241439-1df3e822-be96-11e7-9990-e1f54ffa91a6.png)
+
+![error state](https://user-images.githubusercontent.com/6747425/32241461-2e508b76-be96-11e7-9601-f7799e819ae1.png)
+
 ### Stuff used to make this:
 
- * [create-react-app](https://github.com/facebookincubator/create-react-app) for Markdown parsing
+ * [create-react-app](https://github.com/facebookincubator/create-react-app) for bootstrapping application.
 
 ### Todos:
 
