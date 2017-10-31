@@ -1,6 +1,7 @@
 import { createUrlItem } from "./helper";
 import { clearCache } from "../services/localStorageApi";
 
+// Dispatcher actions
 export const types = {
   LOAD_HISTORY: "APP/LOAD_HISTORY",
   SHORTEN_URL: "APP/SHORTEN_URL",
@@ -15,6 +16,7 @@ export const types = {
   CHANGE_APP_STATE: "APP/CHANGE_STATE"
 };
 
+// Application statuses
 export const APP_STATUS = {
   DEFAULT: "STATUS/APP_DEFAULT",
   EMPTY: "STATUS/APP_EMPTY",
@@ -28,6 +30,11 @@ export const initialState = {
   appStatus: APP_STATUS.EMPTY
 };
 
+/**
+ * Redux reducer
+ * @param  state app state
+ * @param  action dispatched action
+ */
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.LOAD_HISTORY:
@@ -67,6 +74,7 @@ export default (state = initialState, action) => {
   }
 };
 
+// Action creators
 export const actions = {
   loadHistory: () => ({ type: types.LOAD_HISTORY }),
   shortenUrl: url => ({

@@ -1,5 +1,9 @@
 import { getShortcodeCache } from "../services/localStorageApi";
 
+/**
+ * Format shorten api response before feeding into app state
+ * @param  url url object from api response
+ */
 export const createUrlItem = url => {
   const shortcodeCache = getShortcodeCache(url.shortcode);
 

@@ -5,6 +5,7 @@ import { relativeTime } from "../../modules/utilities";
 import { actions } from "../../reducers";
 
 const mapStateToProps = state => ({
+  // format url list from state and convert to array
   list: Object.keys(state.urlList)
     .map(shortcode => {
       let urlItem = Object.assign({}, state.urlList[shortcode]);

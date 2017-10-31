@@ -14,6 +14,10 @@ export class Submit extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  /**
+   * Event handler to keep state in sync with input value
+   * @param event input text change event
+   */
   handleChange = event => {
     this.setState({ value: event.target.value });
   };

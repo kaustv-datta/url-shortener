@@ -1,5 +1,9 @@
 import { CACHE_KEY } from "../configs";
 
+/**
+ * Save shorten api response in localStorage
+ * @param urlObj api response
+ */
 export const handleNewUrl = urlObj => {
   let localCache = JSON.parse(localStorage.getItem(CACHE_KEY));
 
@@ -17,12 +21,19 @@ export const handleNewUrl = urlObj => {
   return Object.keys(localCache);
 };
 
+/**
+ * Fetch shortcode details from localStorage
+ * @param shortcode
+ */
 export const getShortcodeCache = shortcode => {
   const localCache = JSON.parse(localStorage.getItem(CACHE_KEY));
 
   return localCache[shortcode];
 };
 
+/**
+ * Fetch all shortcodes from cache
+ */
 export const getAllShortcodesCache = () => {
   const localCache = JSON.parse(localStorage.getItem(CACHE_KEY));
   let shortcodes = [];

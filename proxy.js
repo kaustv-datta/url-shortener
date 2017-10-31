@@ -17,6 +17,7 @@ app.use(
 app.use(cors());
 app.options("*", cors());
 
+// POST /shorten API
 app.post("/shorten", cors(), (req, res, next) => {
   fetch(API_URL + "shorten", {
     method: "post",
@@ -38,14 +39,17 @@ const server = app.listen(TARGET_PORT, () => {
   console.log("CORS-enabled web server listening on port " + TARGET_PORT);
 });
 
+// Websocket to keep client updated with push notifications
 const io = require("socket.io").listen(server);
 
+// Server socket
 io.on("connection", function(socket) {
   socket.on("url_stats", data => {
     pingShortcodeStats(data.payload, socket);
   });
 });
 
+// GET /:shortcode/stats API
 const pingShortcodeStats = (shortcodes, socket) => {
   shortcodes.forEach(function(code) {
     setTimeout(() => {
@@ -71,6 +75,7 @@ const pingShortcodeStats = (shortcodes, socket) => {
   });
 };
 
+// Handle API fetch errors
 const handleErrors = response => {
   if (!response.ok) throw Error(response.statusText);
   return response;
