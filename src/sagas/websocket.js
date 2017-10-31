@@ -1,4 +1,4 @@
-import { take, put, call, apply, fork } from "redux-saga/effects";
+import { take, put, call, apply } from "redux-saga/effects";
 import { eventChannel, delay } from "redux-saga";
 import io from "socket.io-client";
 import { PROXY_URL } from "../configs";

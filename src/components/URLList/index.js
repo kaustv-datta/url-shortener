@@ -1,15 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { copyToClipboard } from "../../modules/utilities";
 import { APP_STATUS } from "../../reducers";
 
 import "./URLList.css";
 
-const URLList = ({
-  list = [],
-  onClearClick,
-  activeShortcode,
-  appState = ""
-}) => {
+const URLList = ({ list, onClearClick, activeShortcode, appState }) => {
   if (appState === APP_STATUS.EMPTY) {
     return <div id="app-empty-status" className="app-status-icon" />;
   } else if (appState === APP_STATUS.LOADING) {
@@ -74,6 +71,19 @@ const URLList = ({
       </div>
     );
   }
+};
+
+URLList.propTypes = {
+  list: PropTypes.func,
+  onClearClick: PropTypes.func,
+  activeShortcode: PropTypes.func,
+  appState: PropTypes.func
+};
+
+URLList.defaultProps = {
+  list: [],
+  activeShortcode: "",
+  appState: ""
 };
 
 export default URLList;

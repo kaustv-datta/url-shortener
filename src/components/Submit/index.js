@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import "./Submit.css";
 
@@ -9,6 +10,8 @@ export class Submit extends Component {
     this.state = {
       value: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = event => {
@@ -45,5 +48,9 @@ export class Submit extends Component {
     );
   }
 }
+
+Submit.propTypes = {
+  handleSubmit: PropTypes.func
+};
 
 export default Submit;

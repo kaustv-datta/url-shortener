@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest, fork } from "redux-saga/effects";
+import { call, put, takeLatest, fork } from "redux-saga/effects";
 import { types, actions } from "../reducers";
 import { fetchShortcode } from "../services/shortenApi";
 import {
