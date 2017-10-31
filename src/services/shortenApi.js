@@ -1,4 +1,6 @@
+import { put } from "redux-saga/effects";
 import { PROXY_URL } from "../configs";
+import { actions } from "../reducers";
 
 export const fetchShortcode = url => {
   return fetch(PROXY_URL + "/shorten", {
@@ -9,5 +11,12 @@ export const fetchShortcode = url => {
     body: JSON.stringify({
       url
     })
-  }).then(resp => resp.json());
+  })
+    .then(response => {
+      if (!response.ok) {
+        put(actions.setErrorState(response.statusText));
+      }
+      return response;
+    })
+    .then(resp => resp.json());
 };

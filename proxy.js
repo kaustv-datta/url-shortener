@@ -24,12 +24,14 @@ app.post("/shorten", cors(), (req, res, next) => {
       url: req.body.url
     })
   })
+    .then(handleErrors)
     .then(res => res.json())
     .then(json =>
       res.send(
         Object.assign({}, json, { api: API_URL, long_url: req.body.url })
       )
-    );
+    )
+    .catch(error => console.log(error));
 });
 
 const server = app.listen(TARGET_PORT, () => {
@@ -52,6 +54,7 @@ const pingShortcodeStats = (shortcodes, socket) => {
           "Content-Type": "application/json"
         }
       })
+        .then(handleErrors)
         .then(res => res.json())
         .then(json => {
           socket.emit("url_stats_updadte", {
@@ -62,7 +65,13 @@ const pingShortcodeStats = (shortcodes, socket) => {
               startDate: json.startDate
             }
           });
-        });
+        })
+        .catch(error => console.log(error));
     }, 300);
   });
+};
+
+const handleErrors = response => {
+  if (!response.ok) throw Error(response.statusText);
+  return response;
 };

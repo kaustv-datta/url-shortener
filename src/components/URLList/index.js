@@ -74,10 +74,10 @@ const URLList = ({ list, onClearClick, activeShortcode, appState }) => {
 };
 
 URLList.propTypes = {
-  list: PropTypes.func,
+  list: PropTypes.array,
   onClearClick: PropTypes.func,
-  activeShortcode: PropTypes.func,
-  appState: PropTypes.func
+  activeShortcode: PropTypes.string,
+  appState: PropTypes.string
 };
 
 URLList.defaultProps = {
