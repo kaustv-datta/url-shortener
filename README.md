@@ -57,7 +57,7 @@
 
 ![populated state](https://user-images.githubusercontent.com/6747425/32241439-1df3e822-be96-11e7-9990-e1f54ffa91a6.png)
 
-![error state](https://user-images.githubusercontent.com/6747425/32241461-2e508b76-be96-11e7-9601-f7799e819ae1.png)
+![error state](https://user-images.githubusercontent.com/6747425/32263719-1ff98d82-bf01-11e7-80b0-5bdd81f6f855.png)
 
 ### Stuff used to make this:
 
