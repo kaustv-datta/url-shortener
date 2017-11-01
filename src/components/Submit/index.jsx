@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import "./Submit.css";
+import './Submit.css';
 
-export class Submit extends Component {
+class Submit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: ""
+      value: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,7 +18,7 @@ export class Submit extends Component {
    * Event handler to keep state in sync with input value
    * @param event input text change event
    */
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ value: event.target.value });
   };
 
@@ -28,7 +28,7 @@ export class Submit extends Component {
     return (
       <form
         id="submit-form"
-        onSubmit={event => {
+        onSubmit={(event) => {
           handleSubmit(event, this.state.value);
         }}
       >
@@ -46,7 +46,7 @@ export class Submit extends Component {
           className="normal-text round-border link"
           type="submit"
           value="Shorten this link"
-          disabled={this.state.value === ""}
+          disabled={this.state.value === ''}
         />
       </form>
     );
@@ -54,7 +54,7 @@ export class Submit extends Component {
 }
 
 Submit.propTypes = {
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default Submit;

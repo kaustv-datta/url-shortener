@@ -1,11 +1,11 @@
-import { call, put, takeLatest, fork } from "redux-saga/effects";
-import { types, actions } from "../reducers";
-import { fetchShortcode } from "../services/shortenApi";
+import { call, put, takeLatest, fork } from 'redux-saga/effects';
+import { types, actions } from '../reducers';
+import { fetchShortcode } from '../services/shortenApi';
 import {
   handleNewUrl,
-  getAllShortcodesCache
-} from "../services/localStorageApi";
-import websocketSagas, { pongShortcodes, watchPollData } from "./websocket";
+  getAllShortcodesCache,
+} from '../services/localStorageApi';
+import websocketSagas, { pongShortcodes, watchPollData } from './websocket';
 
 function* initApp() {
   const cachedCodes = getAllShortcodesCache();
@@ -34,7 +34,7 @@ function* rootSaga() {
     fork(websocketSagas),
     takeLatest(types.SHORTEN_URL, fetchCode),
     fork(initApp),
-    fork(watchPollData)
+    fork(watchPollData),
   ];
 }
 

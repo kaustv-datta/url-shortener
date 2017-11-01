@@ -1,4 +1,5 @@
-const raf = (global.requestAnimationFrame = cb => {
+/* eslint-disable no-multi-assign */
+const raf = (global.requestAnimationFrame = (cb) => {
   setTimeout(cb, 0);
 });
 

@@ -1,35 +1,35 @@
-import { createUrlItem } from "./helper";
-import { clearCache } from "../services/localStorageApi";
+import { createUrlItem } from './helper';
+import { clearCache } from '../services/localStorageApi';
 
 // Dispatcher actions
 export const types = {
-  LOAD_HISTORY: "APP/LOAD_HISTORY",
-  SHORTEN_URL: "APP/SHORTEN_URL",
-  SHORTEN_SUCCESS: "APP/SHORTEN_SUCCESS",
-  SHORTEN_FAIL: "APP/SHORTEN_FAIL",
-  URL_STATS_UPDATE: "WS/URL_STATS_UPDATE",
-  CLEAR_HISTORY: "APP/CLEAR_HISTORY",
-  SET_DEFAULT_APP_STATE: "APP/DEFAULT_STATE",
-  SET_LOADING_STATE: "APP/LOADING_STATE",
-  SET_ERROR_STATE: "APP/ERROR_STATE",
-  SET_EMPTY_STATE: "APP/EMPTY_STATE",
-  CHANGE_APP_STATE: "APP/CHANGE_STATE",
-  UPDATE_SHORTCODE: "APP/UPDATE_SHORTCODE"
+  LOAD_HISTORY: 'APP/LOAD_HISTORY',
+  SHORTEN_URL: 'APP/SHORTEN_URL',
+  SHORTEN_SUCCESS: 'APP/SHORTEN_SUCCESS',
+  SHORTEN_FAIL: 'APP/SHORTEN_FAIL',
+  URL_STATS_UPDATE: 'WS/URL_STATS_UPDATE',
+  CLEAR_HISTORY: 'APP/CLEAR_HISTORY',
+  SET_DEFAULT_APP_STATE: 'APP/DEFAULT_STATE',
+  SET_LOADING_STATE: 'APP/LOADING_STATE',
+  SET_ERROR_STATE: 'APP/ERROR_STATE',
+  SET_EMPTY_STATE: 'APP/EMPTY_STATE',
+  CHANGE_APP_STATE: 'APP/CHANGE_STATE',
+  UPDATE_SHORTCODE: 'APP/UPDATE_SHORTCODE',
 };
 
 // Application statuses
 export const APP_STATUS = {
-  DEFAULT: "STATUS/APP_DEFAULT",
-  EMPTY: "STATUS/APP_EMPTY",
-  ERROR: "STATUS/APP_ERROR",
-  LOADING: "STATUS/APP_LOADING",
-  WS_LOADING: "STATUS/APP_WS_LOADING"
+  DEFAULT: 'STATUS/APP_DEFAULT',
+  EMPTY: 'STATUS/APP_EMPTY',
+  ERROR: 'STATUS/APP_ERROR',
+  LOADING: 'STATUS/APP_LOADING',
+  WS_LOADING: 'STATUS/APP_WS_LOADING',
 };
 
 export const initialState = {
   urlList: {},
-  currentShortCode: "",
-  appStatus: APP_STATUS.EMPTY
+  currentShortCode: '',
+  appStatus: APP_STATUS.EMPTY,
 };
 
 /**
@@ -50,10 +50,10 @@ export default (state = initialState, action) => {
             shortDomain: action.data.api,
             longUrl: action.data.long_url,
             visits: 0,
-            startDate: new Date().getTime()
-          }
+            startDate: new Date().getTime(),
+          },
         }),
-        currentShortCode: action.data.shortcode
+        currentShortCode: action.data.shortcode,
       };
 
     case types.URL_STATS_UPDATE:
@@ -62,12 +62,12 @@ export default (state = initialState, action) => {
         urlList: Object.assign(
           {},
           state.urlList,
-          createUrlItem(action.payload)
+          createUrlItem(action.payload),
         ),
         appStatus:
           state.appStatus === APP_STATUS.WS_LOADING
             ? APP_STATUS.DEFAULT
-            : state.appStatus
+            : state.appStatus,
       };
 
     case types.CLEAR_HISTORY:
@@ -90,31 +90,31 @@ export const actions = {
   loadHistory: () => ({ type: types.LOAD_HISTORY }),
   shortenUrl: url => ({
     type: types.SHORTEN_URL,
-    payload: { url }
+    payload: { url },
   }),
   clearHistory: () => ({ type: types.CLEAR_HISTORY }),
   setDefaultState: () => ({
     type: types.CHANGE_APP_STATE,
-    data: APP_STATUS.DEFAULT
+    data: APP_STATUS.DEFAULT,
   }),
   setLoadingState: () => ({
     type: types.CHANGE_APP_STATE,
-    data: APP_STATUS.LOADING
+    data: APP_STATUS.LOADING,
   }),
   setSocketLoadingState: () => ({
     type: types.CHANGE_APP_STATE,
-    data: APP_STATUS.WS_LOADING
+    data: APP_STATUS.WS_LOADING,
   }),
   setErrorState: () => ({
     type: types.CHANGE_APP_STATE,
-    data: APP_STATUS.ERROR
+    data: APP_STATUS.ERROR,
   }),
   setEmptyState: () => ({
     type: types.CHANGE_APP_STATE,
-    data: APP_STATUS.EMPTY
+    data: APP_STATUS.EMPTY,
   }),
   setActiveShortcode: shortcode => ({
     type: types.UPDATE_SHORTCODE,
-    data: shortcode
-  })
+    data: shortcode,
+  }),
 };
