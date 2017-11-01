@@ -28,7 +28,10 @@ export const handleNewUrl = urlObj => {
 export const getShortcodeCache = shortcode => {
   const localCache = JSON.parse(localStorage.getItem(CACHE_KEY));
 
-  return localCache[shortcode];
+  if (localCache) {
+    return localCache[shortcode];
+  }
+  return null;
 };
 
 /**

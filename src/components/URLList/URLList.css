@@ -73,6 +73,6 @@
 }
 
 #app-error-status {
-  background: url(../../styles/images/warning.png) center / 200px 200px
+  background: url(../../styles/images/error-triangle.png) center / 200px 200px
     no-repeat;
 }

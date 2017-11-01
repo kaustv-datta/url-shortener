@@ -7,6 +7,15 @@ import {
 } from "../services/localStorageApi";
 import websocketSagas, { pongShortcodes, watchPollData } from "./websocket";
 
+function* initApp() {
+  const cachedCodes = getAllShortcodesCache();
+
+  if (cachedCodes.length > 0) {
+    put(actions.setLoadingState());
+    yield call(pongShortcodes, cachedCodes);
+  }
+}
+
 function* fetchCode(action) {
   try {
     const data = yield call(fetchShortcode, action.payload.url);
@@ -24,8 +33,7 @@ function* rootSaga() {
   yield [
     fork(websocketSagas),
     takeLatest(types.SHORTEN_URL, fetchCode),
-    put(actions.setLoadingState()),
-    fork(pongShortcodes, getAllShortcodesCache()),
+    fork(initApp),
     fork(watchPollData)
   ];
 }

@@ -57,9 +57,7 @@ export default (state = initialState, action) => {
     case types.URL_STATS_UPDATE:
       return {
         ...state,
-        urlList: Object.assign({}, state.urlList, {
-          [action.payload.shortcode]: createUrlItem(action.payload)
-        })
+        urlList: Object.assign({}, state.urlList, createUrlItem(action.payload))
       };
 
     case types.CLEAR_HISTORY:
