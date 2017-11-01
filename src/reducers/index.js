@@ -21,7 +21,8 @@ export const APP_STATUS = {
   DEFAULT: "STATUS/APP_DEFAULT",
   EMPTY: "STATUS/APP_EMPTY",
   ERROR: "STATUS/APP_ERROR",
-  LOADING: "STATUS/APP_LOADING"
+  LOADING: "STATUS/APP_LOADING",
+  WS_LOADING: "STATUS/APP_WS_LOADING"
 };
 
 export const initialState = {
@@ -57,7 +58,15 @@ export default (state = initialState, action) => {
     case types.URL_STATS_UPDATE:
       return {
         ...state,
-        urlList: Object.assign({}, state.urlList, createUrlItem(action.payload))
+        urlList: Object.assign(
+          {},
+          state.urlList,
+          createUrlItem(action.payload)
+        ),
+        appStatus:
+          state.appStatus === APP_STATUS.WS_LOADING
+            ? APP_STATUS.DEFAULT
+            : state.appStatus
       };
 
     case types.CLEAR_HISTORY:
@@ -87,6 +96,10 @@ export const actions = {
   setLoadingState: () => ({
     type: types.CHANGE_APP_STATE,
     data: APP_STATUS.LOADING
+  }),
+  setSocketLoadingState: () => ({
+    type: types.CHANGE_APP_STATE,
+    data: APP_STATUS.WS_LOADING
   }),
   setErrorState: () => ({
     type: types.CHANGE_APP_STATE,

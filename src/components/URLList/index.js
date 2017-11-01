@@ -9,7 +9,10 @@ import "./URLList.css";
 const URLList = ({ list, onClearClick, activeShortcode, appState }) => {
   if (appState === APP_STATUS.EMPTY) {
     return <div id="app-empty-status" className="app-status-icon" />;
-  } else if (appState === APP_STATUS.LOADING) {
+  } else if (
+    appState === APP_STATUS.LOADING ||
+    appState === APP_STATUS.WS_LOADING
+  ) {
     return <div id="app-loading-status" className="app-status-icon" />;
   } else if (appState === APP_STATUS.ERROR) {
     return <div id="app-error-status" className="app-status-icon" />;

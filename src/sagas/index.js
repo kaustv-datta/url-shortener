@@ -11,7 +11,7 @@ function* initApp() {
   const cachedCodes = getAllShortcodesCache();
 
   if (cachedCodes.length > 0) {
-    put(actions.setLoadingState());
+    yield put(actions.setSocketLoadingState());
     yield call(pongShortcodes, cachedCodes);
   }
 }
