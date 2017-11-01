@@ -1,12 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { copyToClipboard } from "../../modules/utilities";
 import { APP_STATUS } from "../../reducers";
 
 import "./URLList.css";
 
-const URLList = ({ list, onClearClick, activeShortcode, appState }) => {
+const URLList = ({
+  list,
+  onClearClick,
+  activeShortcode,
+  appState,
+  onCellClick
+}) => {
   if (appState === APP_STATUS.EMPTY) {
     return <div id="app-empty-status" className="app-status-icon" />;
   } else if (
@@ -44,7 +49,7 @@ const URLList = ({ list, onClearClick, activeShortcode, appState }) => {
                 <tr
                   key={url.shortcode}
                   onClick={() =>
-                    copyToClipboard(url.shortDomain + url.shortcode)}
+                    onCellClick(url.shortcode, url.shortDomain + url.shortcode)}
                 >
                   <td
                     className={
@@ -80,7 +85,8 @@ URLList.propTypes = {
   list: PropTypes.array,
   onClearClick: PropTypes.func,
   activeShortcode: PropTypes.string,
-  appState: PropTypes.string
+  appState: PropTypes.string,
+  onCellClick: PropTypes.func
 };
 
 URLList.defaultProps = {

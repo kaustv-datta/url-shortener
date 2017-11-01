@@ -25,6 +25,10 @@
   cursor: pointer;
 }
 
+#url-list tbody tr:hover {
+  background-color: var(--light-background-color);
+}
+
 #url-list tbody tr td.new-link {
   border-left: 4px solid var(--accent-color);
 }

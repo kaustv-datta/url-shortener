@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import URLList from "../../components/URLList";
 import { relativeTime } from "../../modules/utilities";
 import { actions } from "../../reducers";
+import { copyToClipboard } from "../../modules/utilities";
 
 const mapStateToProps = state => ({
   // format url list from state and convert to array
@@ -30,6 +31,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onClearClick: () => {
     dispatch(actions.clearHistory());
     dispatch(actions.setEmptyState());
+  },
+  onCellClick: (shortcode, shorturl) => {
+    dispatch(actions.setActiveShortcode(shortcode));
+    copyToClipboard(shorturl);
   }
 });
 

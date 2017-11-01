@@ -13,7 +13,8 @@ export const types = {
   SET_LOADING_STATE: "APP/LOADING_STATE",
   SET_ERROR_STATE: "APP/ERROR_STATE",
   SET_EMPTY_STATE: "APP/EMPTY_STATE",
-  CHANGE_APP_STATE: "APP/CHANGE_STATE"
+  CHANGE_APP_STATE: "APP/CHANGE_STATE",
+  UPDATE_SHORTCODE: "APP/UPDATE_SHORTCODE"
 };
 
 // Application statuses
@@ -76,6 +77,9 @@ export default (state = initialState, action) => {
     case types.CHANGE_APP_STATE:
       return { ...state, appStatus: action.data };
 
+    case types.UPDATE_SHORTCODE:
+      return { ...state, currentShortCode: action.data };
+
     default:
       return state;
   }
@@ -108,5 +112,9 @@ export const actions = {
   setEmptyState: () => ({
     type: types.CHANGE_APP_STATE,
     data: APP_STATUS.EMPTY
+  }),
+  setActiveShortcode: shortcode => ({
+    type: types.UPDATE_SHORTCODE,
+    data: shortcode
   })
 };

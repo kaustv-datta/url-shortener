@@ -40,6 +40,15 @@
  npm run build
  ```
 
+
+### Browser Support
+
+* Chrome 49.0
+* Firefox (Gecko) 42(42)
+* Opera 36.0
+* Safari (WebKit) 9.1
+
+
 ### Running application screenshots
 
 ![default state](https://user-images.githubusercontent.com/6747425/32241311-ceb27c9c-be95-11e7-8223-0303091d642a.png)
