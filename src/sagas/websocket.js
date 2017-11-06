@@ -1,10 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { take, put, call, apply } from 'redux-saga/effects';
-import { eventChannel, delay } from 'redux-saga';
+import { eventChannel } from 'redux-saga';
 import io from 'socket.io-client';
 import { PROXY_URL } from '../configs';
 import { types } from '../reducers';
-import { getAllShortcodesCache } from '../services/localStorageApi';
 
 let WEB_SOCKET = null;
 
@@ -33,17 +32,6 @@ export function* pongShortcodes(shortcodes) {
       'url_stats',
       { payload: shortcodes },
     ]);
-  }
-}
-
-export function* watchPollData() {
-  try {
-    while (true) {
-      yield call(delay, 10000);
-      yield call(pongShortcodes, getAllShortcodesCache());
-    }
-  } catch (error) {
-    console.error(error);
   }
 }
 

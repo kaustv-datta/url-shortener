@@ -41,17 +41,27 @@ const server = app.listen(TARGET_PORT, () => {
 
 // Websocket to keep client updated with push notifications
 const io = require("socket.io").listen(server);
+let timerId = null;
+let shortcodeCache = [];
 
 // Server socket
 io.on("connection", function(socket) {
+
   socket.on("url_stats", data => {
-    pingShortcodeStats(data.payload, socket);
+
+    shortcodeCache = data.payload;
+    // Clear old timer
+    if (timerId !== null) clearInterval(timerId);
+    // Set timer interval of 10 sec
+    timerId = setInterval(() => {
+      pingShortcodeStats(socket);
+    }, 10000);
   });
 });
 
 // GET /:shortcode/stats API
-const pingShortcodeStats = (shortcodes, socket) => {
-  shortcodes.forEach(function(code) {
+const pingShortcodeStats = (socket) => {
+  shortcodeCache.forEach(function(code) {
     setTimeout(() => {
       fetch(API_URL + code + "/stats", {
         headers: {

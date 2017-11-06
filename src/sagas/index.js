@@ -5,7 +5,7 @@ import {
   handleNewUrl,
   getAllShortcodesCache,
 } from '../services/localStorageApi';
-import websocketSagas, { pongShortcodes, watchPollData } from './websocket';
+import websocketSagas, { pongShortcodes } from './websocket';
 
 function* initApp() {
   const cachedCodes = getAllShortcodesCache();
@@ -34,7 +34,6 @@ function* rootSaga() {
     fork(websocketSagas),
     takeLatest(types.SHORTEN_URL, fetchCode),
     fork(initApp),
-    fork(watchPollData),
   ];
 }
 
